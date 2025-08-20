@@ -1,77 +1,64 @@
 import Foundation
 
-// ====================================================
-// 📝 Ödev 1.1 – Değişkenler ve Veri Tipleri
-// ====================================================
+var fullName: String = "Ümit Albayrak"
 
-// String – Ad Soyad
-var adSoyad: String = "Ümit Albayrak"
 
-// Int – Yaş
-var yas: Int = 25
+var age: Int = 25
 
-// Double – Boy (metre cinsinden)
-var boy: Double = 1.80
 
-// Bool – Yazılımı seviyor muyum?
-var yazilimiSeviyorMuyum: Bool = true
+var height: Double = 1.80
 
-// Optional – Takma adım olabilir ya da olmayabilir
-var takmaAd: String? = nil // Şimdilik takma adım yok
 
-// Optional güvenli açılım (Optional Binding)
-if let mevcutTakmaAd = takmaAd {
-    print("Takma adım: \(mevcutTakmaAd)")
+var lovesCoding: Bool = true
+
+
+var nickname: String? = nil 
+
+if let currentNickname = nickname {
+    print("Nickname: \(currentNickname)")
 } else {
-    print("Herhangi bir takma adım yok.")
+    print("No nickname available.")
 }
 
-// Bilgi kartını yazdır
 print("""
-👤 Ad Soyad: \(adSoyad)
-🎂 Yaş: \(yas)
-📏 Boy: \(boy)
-💻 Yazılım sevgisi: \(yazilimiSeviyorMuyum ? "Evet" : "Hayır")
+👤 Full Name: \(fullName)
+🎂 Age: \(age)
+📏 Height: \(height)
+💻 Loves coding: \(lovesCoding ? "Yes" : "No")
 """)
 
 
-// ====================================================
-// 🧮 Ödev 1.2 – Fonksiyonlar ve Closure’lar
-// ====================================================
-
-// Basit Hesap Makinesi Fonksiyonu
-func hesapMakinesi(_ sayi1: Double, _ sayi2: Double, islem: String) -> Double? {
-    switch islem {
-    case "topla":
-        return sayi1 + sayi2
-    case "cikar":
-        return sayi1 - sayi2
-    case "carp":
-        return sayi1 * sayi2
-    case "bol":
-        return sayi2 != 0 ? sayi1 / sayi2 : nil
+func calculator(_ num1: Double, _ num2: Double, operation: String) -> Double? {
+    switch operation {
+    case "add":
+        return num1 + num2
+    case "subtract":
+        return num1 - num2
+    case "multiply":
+        return num1 * num2
+    case "divide":
+        return num2 != 0 ? num1 / num2 : nil
     default:
         return nil
     }
 }
 
-// Fonksiyon testleri
-print("Toplama: \(hesapMakinesi(10, 5, islem: "topla")!)")
-print("Çıkarma: \(hesapMakinesi(10, 5, islem: "cikar")!)")
-print("Çarpma: \(hesapMakinesi(10, 5, islem: "carp")!)")
-if let sonuc = hesapMakinesi(10, 0, islem: "bol") {
-    print("Bölme: \(sonuc)")
+
+print("Addition: \(calculator(10, 5, operation: "add")!)")
+print("Subtraction: \(calculator(10, 5, operation: "subtract")!)")
+print("Multiplication: \(calculator(10, 5, operation: "multiply")!)")
+if let result = calculator(10, 0, operation: "divide") {
+    print("Division: \(result)")
 } else {
-    print("Hata: 0’a bölme yapılamaz!")
+    print("Error: Division by zero is not allowed!")
 }
 
-// Closure ile filtreleme ve sıralama
-let sayilar = [10, 3, 7, 22, 5, 8, 15]
 
-// Çift sayıları filtrele
-let ciftSayilar = sayilar.filter { $0 % 2 == 0 }
-print("Çift Sayılar: \(ciftSayilar)")
+let numbers = [10, 3, 7, 22, 5, 8, 15]
 
-// Büyükten küçüğe sıralama
-let sirali = sayilar.sorted { $0 > $1 }
-print("Büyükten küçüğe sıralı: \(sirali)")
+let evenNumbers = numbers.filter { $0 % 2 == 0 }
+print("Even Numbers: \(evenNumbers)")
+
+
+let sortedNumbers = numbers.sorted { $0 > $1 }
+print("Sorted Descending: \(sortedNumbers)")
